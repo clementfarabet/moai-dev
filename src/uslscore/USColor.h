@@ -18,6 +18,7 @@ namespace USColor {
 		RGBA_5551,
 		RGBA_4444,
 		RGBA_8888,
+		L_8,
 		CLR_FMT_UNKNOWN,
 	};
 	

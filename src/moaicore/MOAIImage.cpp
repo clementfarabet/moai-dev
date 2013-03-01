@@ -1585,9 +1585,11 @@ void MOAIImage::Load ( USStream& stream, u32 transform ) {
 	
 	if ( MOAIImage::IsPng ( stream )) {
 		this->LoadPng ( stream, transform );
+		if (this->mColorFormat == USColor::A_8) this->mColorFormat = USColor::L_8;
 	}
 	else if ( MOAIImage::IsJpg ( stream )) {
 		this->LoadJpg ( stream, transform );
+		if (this->mColorFormat == USColor::A_8) this->mColorFormat = USColor::L_8;
 	}
 }
 

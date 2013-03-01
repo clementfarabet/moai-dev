@@ -143,6 +143,11 @@ void MOAITextureBase::CreateTextureFromImage ( MOAIImage& image ) {
 
 	switch ( colorFormat ) {
 		
+		case USColor::L_8:
+			this->mGLInternalFormat = GL_LUMINANCE;
+			this->mGLPixelType = GL_UNSIGNED_BYTE;
+			break;
+
 		case USColor::A_8:
 			this->mGLInternalFormat = GL_ALPHA;
 			this->mGLPixelType = GL_UNSIGNED_BYTE;
