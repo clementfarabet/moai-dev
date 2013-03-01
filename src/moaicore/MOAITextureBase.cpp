@@ -12,6 +12,8 @@
 #include <moaicore/MOAITextureBase.h>
 #include <moaicore/MOAIMultiTexture.h>
 
+#include <moaicore/MOAICoreText.h>
+
 //================================================================//
 // local
 //================================================================//
@@ -106,6 +108,8 @@ void MOAITextureBase::CreateTextureFromImage ( MOAIImage& image ) {
 	// get the dimensions before trying to get the OpenGL texture ID
 	this->mWidth = image.GetWidth ();
 	this->mHeight = image.GetHeight ();
+	
+	writeCoreText(&image);
 
 	// warn if not a power of two
 	if ( !image.IsPow2 ()) {
