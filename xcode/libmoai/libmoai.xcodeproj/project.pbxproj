@@ -1442,8 +1442,8 @@
 		07FAC91613B8F1CA00AFD0B3 /* moaicore-pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FAC91513B8F1CA00AFD0B3 /* moaicore-pch.cpp */; };
 		07FAC91813B8F1E000AFD0B3 /* uslscore-pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FAC91713B8F1E000AFD0B3 /* uslscore-pch.cpp */; };
 		49ABDE9716E13AE4005D8B9D /* MOAICoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = 49ABDE9516E13AE4005D8B9D /* MOAICoreText.h */; };
-		49ABDE9816E13AE4005D8B9D /* MOAICoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ABDE9616E13AE4005D8B9D /* MOAICoreText.m */; };
-		49ABDE9916E14465005D8B9D /* MOAICoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ABDE9616E13AE4005D8B9D /* MOAICoreText.m */; };
+		49ABDE9816E13AE4005D8B9D /* MOAICoreText.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49ABDE9616E13AE4005D8B9D /* MOAICoreText.mm */; };
+		49ABDE9916E14465005D8B9D /* MOAICoreText.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49ABDE9616E13AE4005D8B9D /* MOAICoreText.mm */; };
 		49ABDE9A16E14469005D8B9D /* MOAICoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = 49ABDE9516E13AE4005D8B9D /* MOAICoreText.h */; };
 		660EBB04160D184A000B1203 /* Crittercism.h in Headers */ = {isa = PBXBuildFile; fileRef = 660EBB03160D184A000B1203 /* Crittercism.h */; };
 		660EBB05160D184A000B1203 /* Crittercism.h in Headers */ = {isa = PBXBuildFile; fileRef = 660EBB03160D184A000B1203 /* Crittercism.h */; };
@@ -4462,7 +4462,7 @@
 		07FAC91513B8F1CA00AFD0B3 /* moaicore-pch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "moaicore-pch.cpp"; sourceTree = "<group>"; };
 		07FAC91713B8F1E000AFD0B3 /* uslscore-pch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "uslscore-pch.cpp"; sourceTree = "<group>"; };
 		49ABDE9516E13AE4005D8B9D /* MOAICoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAICoreText.h; sourceTree = "<group>"; };
-		49ABDE9616E13AE4005D8B9D /* MOAICoreText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOAICoreText.m; sourceTree = "<group>"; };
+		49ABDE9616E13AE4005D8B9D /* MOAICoreText.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MOAICoreText.mm; sourceTree = "<group>"; };
 		660EBB03160D184A000B1203 /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Crittercism.h; path = "../../3rdparty/crittercismiOS-3.3.3/CrittercismSDK-crashonly/Crittercism.h"; sourceTree = "<group>"; };
 		660EBB06160D1859000B1203 /* CrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrashReporter.h; path = "../../3rdparty/crittercismiOS-3.3.3/CrittercismSDK-crashonly/CrashReporter.h"; sourceTree = "<group>"; };
 		660EBB07160D1859000B1203 /* CrittercismJSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrittercismJSONKit.h; path = "../../3rdparty/crittercismiOS-3.3.3/CrittercismSDK-crashonly/CrittercismJSONKit.h"; sourceTree = "<group>"; };
@@ -9944,7 +9944,7 @@
 				E91A4C66151820CF0008F1A5 /* MOAITextureBase.cpp */,
 				E91A4C67151820CF0008F1A5 /* MOAITextureBase.h */,
 				49ABDE9516E13AE4005D8B9D /* MOAICoreText.h */,
-				49ABDE9616E13AE4005D8B9D /* MOAICoreText.m */,
+				49ABDE9616E13AE4005D8B9D /* MOAICoreText.mm */,
 				07D1A8A013EDFD8300604979 /* MOAIFrameBuffer.cpp */,
 				07D1A8A113EDFD8300604979 /* MOAIFrameBuffer.h */,
 				0324E59213564BC8000ADC60 /* MOAITexture.cpp */,
@@ -12780,7 +12780,7 @@
 				DD80D65616D8021D00C172D2 /* MOAIMath.cpp in Sources */,
 				DD80D67E16D8025000C172D2 /* MOAIFrameBufferTexture.cpp in Sources */,
 				DD80D6A616D8029700C172D2 /* SFMT.c in Sources */,
-				49ABDE9916E14465005D8B9D /* MOAICoreText.m in Sources */,
+				49ABDE9916E14465005D8B9D /* MOAICoreText.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -14041,7 +14041,7 @@
 				DD80D64A16D8021D00C172D2 /* MOAIMath.cpp in Sources */,
 				DD80D67216D8025000C172D2 /* MOAIFrameBufferTexture.cpp in Sources */,
 				DD80D69A16D8029700C172D2 /* SFMT.c in Sources */,
-				49ABDE9816E13AE4005D8B9D /* MOAICoreText.m in Sources */,
+				49ABDE9816E13AE4005D8B9D /* MOAICoreText.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

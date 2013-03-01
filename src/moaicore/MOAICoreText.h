@@ -4,6 +4,6 @@
 #include "pch.h"
 #include <moaicore/MOAIImage.h>
 
-void writeCoreText(MOAIImage *img);
+void writeCoreText(MOAIImage &img);
 
 #endif

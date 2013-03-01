@@ -109,7 +109,7 @@ void MOAITextureBase::CreateTextureFromImage ( MOAIImage& image ) {
 	this->mWidth = image.GetWidth ();
 	this->mHeight = image.GetHeight ();
 	
-	writeCoreText(&image);
+	writeCoreText(image);
 
 	// warn if not a power of two
 	if ( !image.IsPow2 ()) {

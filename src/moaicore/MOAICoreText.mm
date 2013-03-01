@@ -1,21 +1,30 @@
+#import <Foundation/Foundation.h>
+#import <CoreText/CoreText.h>
+#include <CoreFoundation/CFDictionary.h>
+
 #include <moaicore/MOAICoreText.h>
 
-void writeCoreText(MOAIImage *image)
+void writeCoreText(MOAIImage &image)
 {
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-	CGContextRef gc = CGBitmapContextCreate(image.GetBitmap(),
+	CGContextRef context = CGBitmapContextCreate(image.GetBitmap(),
 											image.GetWidth(),
 											image.GetHeight(),
 											8,
 											image.GetWidth() * 4,
 											colorSpace,
-											kCGImageAlphaLast);
+											kCGImageAlphaNoneSkipLast );
+	// kCGImageAlphaPremultipliedLast);
+	// kCGImageAlphaLast
 	
 	CGColorSpaceRelease(colorSpace);
 
-	CFStringRef string = (CFStringRef) @"Long text.\nBlablabla";
 	
-	CTFontRef font = CTFontCreateWithName(CFSTR("Times New Roman"), 16, NULL);
+	CTFontRef font = CTFontCreateWithName(CFSTR("Helvetica"), 16, NULL);
+
+	CFStringRef string = (CFStringRef) @"Long text.\nBlablabla";
+	CFMutableAttributedStringRef attrStr = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
+	CFAttributedStringReplaceString (attrStr, CFRangeMake(0, 0), string);
 	
 	//    create paragraph style and assign text alignment to it
 	CTTextAlignment alignment = kCTJustifiedTextAlignment;
@@ -28,27 +37,7 @@ void writeCoreText(MOAIImage *image)
 	//    set font attribute
 	CFAttributedStringSetAttribute(attrStr, CFRangeMake(0, CFAttributedStringGetLength(attrStr)), kCTFontAttributeName, font);
 	
-	
-	CGContextRef context;
-	
-	
-	// Initialize string, font, and context
-	CFStringRef keys[] = { kCTFontAttributeName };
-	CFTypeRef values[] = { font };
-	
-	CFDictionaryRef attributes =
-    CFDictionaryCreate(kCFAllocatorDefault, (const void**)&keys,
-					   (const void**)&values, sizeof(keys) / sizeof(keys[0]),
-					   &kCFTypeDictionaryCallBacks,
-					   &kCFTypeDictionaryValueCallbacks);
-	
-	CFAttributedStringRef attrString =
-    CFAttributedStringCreate(kCFAllocatorDefault, string, attributes);
-	
-	CFRelease(string);
-	CFRelease(attributes);
-	
-	CTLineRef line = CTLineCreateWithAttributedString(attrString);
+	CTLineRef line = CTLineCreateWithAttributedString(attrStr);
 	
 	// Set text position and draw the line into the graphics context
 	CGContextSetTextPosition(context, 10.0, 10.0);
@@ -57,6 +46,7 @@ void writeCoreText(MOAIImage *image)
 
 	
 	//    release paragraph style and font
+	CFRelease(string);
 	CFRelease(paragraphStyle);
 	CFRelease(font);
 }
