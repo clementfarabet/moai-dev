@@ -107,8 +107,11 @@ static void drawAnObject ()
     // Initialize MOAI env
 	AKURunBytecode ( moai_lua, moai_lua_SIZE );
 
-    // Set Working Dir (TODO: Do this in a better way?)
-    AKURunString("MOAIFileSystem.setWorkingDirectory('MoaiCocoa.app/Contents/Resources')");
+    // Set Lua Working Dir
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+    [[NSFileManager defaultManager] changeCurrentDirectoryPath:resourcePath];
+    NSString *luacmd = [NSString stringWithFormat:@"MOAIFileSystem.setWorkingDirectory('%@')",resourcePath];
+    AKURunString([luacmd UTF8String]);
 
     // Run user script:
     NSString *cwd = [[NSBundle mainBundle] bundlePath];
