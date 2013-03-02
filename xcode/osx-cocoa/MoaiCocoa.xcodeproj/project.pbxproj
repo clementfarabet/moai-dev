@@ -32,6 +32,7 @@
 		EBEA1B1816E17E020012E642 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEA1B1716E17E020012E642 /* IOKit.framework */; };
 		EBEA1B1F16E24E3A0012E642 /* main.lua in Resources */ = {isa = PBXBuildFile; fileRef = EBEA1B1E16E24E3A0012E642 /* main.lua */; };
 		EBEA1B2316E26A820012E642 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EBEA1B2216E26A820012E642 /* test.jpg */; };
+		EBEA1B2616E26FDD0012E642 /* Gotham-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBEA1B2416E26FD70012E642 /* Gotham-Book.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +235,7 @@
 		EBEA1B1716E17E020012E642 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		EBEA1B1E16E24E3A0012E642 /* main.lua */ = {isa = PBXFileReference; lastKnownFileType = file; name = main.lua; path = ckoia/lua/main.lua; sourceTree = "<group>"; };
 		EBEA1B2216E26A820012E642 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test.jpg; path = ckoia/lua/test.jpg; sourceTree = "<group>"; };
+		EBEA1B2416E26FD70012E642 /* Gotham-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham-Book.ttf"; path = "ckoia/lua/Gotham-Book.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				EBEA1B2216E26A820012E642 /* test.jpg */,
+				EBEA1B2416E26FD70012E642 /* Gotham-Book.ttf */,
 				EBEA1B1E16E24E3A0012E642 /* main.lua */,
 			);
 			name = Resources;
@@ -584,6 +587,7 @@
 				EBEA1B1F16E24E3A0012E642 /* main.lua in Resources */,
 				EBEA1A5716E169230012E642 /* Credits.rtf in Resources */,
 				EBEA1A5D16E169230012E642 /* MainMenu.xib in Resources */,
+				EBEA1B2616E26FDD0012E642 /* Gotham-Book.ttf in Resources */,
 				EBEA1B2316E26A820012E642 /* test.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
