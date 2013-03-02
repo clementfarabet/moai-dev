@@ -33,6 +33,7 @@
 		EBEA1B1F16E24E3A0012E642 /* main.lua in Resources */ = {isa = PBXBuildFile; fileRef = EBEA1B1E16E24E3A0012E642 /* main.lua */; };
 		EBEA1B2316E26A820012E642 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EBEA1B2216E26A820012E642 /* test.jpg */; };
 		EBEA1B2616E26FDD0012E642 /* Gotham-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBEA1B2416E26FD70012E642 /* Gotham-Book.ttf */; };
+		EBEA1B5C16E2B2BE0012E642 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = EBEA1B5B16E2B2BD0012E642 /* icon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +237,7 @@
 		EBEA1B1E16E24E3A0012E642 /* main.lua */ = {isa = PBXFileReference; lastKnownFileType = file; name = main.lua; path = ckoia/lua/main.lua; sourceTree = "<group>"; };
 		EBEA1B2216E26A820012E642 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test.jpg; path = ckoia/lua/test.jpg; sourceTree = "<group>"; };
 		EBEA1B2416E26FD70012E642 /* Gotham-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham-Book.ttf"; path = "ckoia/lua/Gotham-Book.ttf"; sourceTree = "<group>"; };
+		EBEA1B5B16E2B2BD0012E642 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ckoia/icon.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +381,7 @@
 			children = (
 				EBEA1B2216E26A820012E642 /* test.jpg */,
 				EBEA1B2416E26FD70012E642 /* Gotham-Book.ttf */,
+				EBEA1B5B16E2B2BD0012E642 /* icon.icns */,
 				EBEA1B1E16E24E3A0012E642 /* main.lua */,
 			);
 			name = Resources;
@@ -589,6 +592,7 @@
 				EBEA1A5D16E169230012E642 /* MainMenu.xib in Resources */,
 				EBEA1B2616E26FDD0012E642 /* Gotham-Book.ttf in Resources */,
 				EBEA1B2316E26A820012E642 /* test.jpg in Resources */,
+				EBEA1B5C16E2B2BE0012E642 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
