@@ -19,7 +19,73 @@
 #include <aku/AKU-luaext.h>
 #include <aku/AKU-untz.h>
 
+namespace MoaiInputDeviceID {
+	enum {
+		DEVICE,
+		TOTAL,
+	};
+}
+
+namespace MoaiInputDeviceSensorID {
+	enum {
+		KEYBOARD,
+		POINTER,
+		MOUSE_LEFT,
+		MOUSE_MIDDLE,
+		MOUSE_RIGHT,
+		TOTAL,
+	};
+}
+
 @implementation MoaiOpenGLView
+
+- (void)mouseMoved:(NSEvent *)theEvent
+{
+    NSPoint loc = [theEvent locationInWindow];
+	AKUEnqueuePointerEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::POINTER, loc.x, loc.y );
+}
+
+- (void)mouseDown:(NSEvent *)theEvent
+{
+    AKUEnqueueButtonEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::MOUSE_LEFT, true);
+}
+
+- (void)mouseUp:(NSEvent *)theEvent
+{
+    AKUEnqueueButtonEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::MOUSE_LEFT, false);
+}
+
+-(void)rightMouseDown:(NSEvent *)theEvent
+{
+    AKUEnqueueButtonEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::MOUSE_RIGHT, true);
+}
+
+-(void)rightMouseUp:(NSEvent *)theEvent
+{
+    AKUEnqueueButtonEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::MOUSE_RIGHT, false);
+}
+
+- (void)mouseDragged:(NSEvent *)theEvent
+{
+    NSPoint loc = [theEvent locationInWindow];
+	AKUEnqueuePointerEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::POINTER, loc.x, loc.y );
+}
+
+- (void)scrollWheel:(NSEvent *)theEvent
+{
+}
+
+- (void)keyDown:(NSEvent *)theEvent
+{
+    unsigned short key = theEvent.keyCode;
+	AKUEnqueueKeyboardEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::KEYBOARD, key, true );
+}
+
+- (void)keyUp:(NSEvent *)theEvent
+{
+    unsigned short key = theEvent.keyCode;
+	AKUEnqueueKeyboardEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::KEYBOARD, key, false );
+}
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -36,18 +102,6 @@
     return self;
 }
 
-static void drawAnObject ()
-{
-    glColor3f(1.0f, 0.85f, 0.35f);
-    glBegin(GL_TRIANGLES);
-    {
-        glVertex3f(  0.0,  0.6, 0.0);
-        glVertex3f( -0.2, -0.3, 0.0);
-        glVertex3f(  0.2, -0.3 ,0.0);
-    }
-    glEnd();
-}
-
 - (void)drawRect:(NSRect)dirtyRect
 {
     // Clear background
@@ -56,8 +110,7 @@ static void drawAnObject ()
     
     // Render
     AKURender();
-    //drawAnObject();
-    
+
     // Done
     glFlush();
 }
@@ -104,6 +157,17 @@ static void drawAnObject ()
     AKUSetViewSize ( screenWidth, screenHeight );
     AKUDetectGfxContext ();
 
+    // Register input devices
+    AKUSetInputConfigurationName ( "AKUCocoa" );
+	AKUReserveInputDevices			( MoaiInputDeviceID::TOTAL );
+	AKUSetInputDevice				( MoaiInputDeviceID::DEVICE, "device" );
+	AKUReserveInputDeviceSensors	( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::TOTAL );
+	AKUSetInputDeviceKeyboard		( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::KEYBOARD,		"keyboard" );
+	AKUSetInputDevicePointer		( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::POINTER,		"pointer" );
+	AKUSetInputDeviceButton			( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::MOUSE_LEFT,	"mouseLeft" );
+	AKUSetInputDeviceButton			( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::MOUSE_MIDDLE,	"mouseMiddle" );
+	AKUSetInputDeviceButton			( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::MOUSE_RIGHT,	"mouseRight" );
+    
     // Initialize MOAI env
 	AKURunBytecode ( moai_lua, moai_lua_SIZE );
 
@@ -122,6 +186,10 @@ static void drawAnObject ()
     NSTimer *timer = [NSTimer timerWithTimeInterval:AKUGetSimStep() target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
 	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSEventTrackingRunLoopMode]; // ensure timer fires during resize
+
+    // Active mouse moved events:
+    [[self window] setAcceptsMouseMovedEvents:YES];
+    [[self window] makeFirstResponder:self];
 
     // Resize Window
     float AREA_USAGE = 0.9;

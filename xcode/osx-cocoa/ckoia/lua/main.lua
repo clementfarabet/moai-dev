@@ -61,3 +61,14 @@ MOAIGfxDevice.setListener(MOAIGfxDevice.EVENT_RESIZE, function(nwidth, nheight)
    text:setRect(-width/2,-200,width/2,200)
 end)
 
+-- Test touch:
+MOAIInputMgr.device.pointer:setCallback(function(x,y)
+   print('mouse moving to: '.. x..','..y)
+end)
+MOAIInputMgr.device.mouseLeft:setCallback(function(down)
+   print('button left clicked (down='..tostring(down)..')') 
+end)
+MOAIInputMgr.device.keyboard:setCallback(function(key,down)
+   print('key ' .. key .. ' pressed (down='..tostring(down)..')') 
+end)
+
