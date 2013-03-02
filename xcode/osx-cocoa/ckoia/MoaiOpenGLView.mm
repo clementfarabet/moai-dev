@@ -41,8 +41,13 @@ namespace MoaiInputDeviceSensorID {
 
 - (void)mouseMoved:(NSEvent *)theEvent
 {
+    NSRect screenRect = [self bounds];
+    CGFloat screenHeight = screenRect.size.height;
     NSPoint loc = [theEvent locationInWindow];
-	AKUEnqueuePointerEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::POINTER, loc.x, loc.y );
+    NSRect pixelRect = [self convertRectToBacking:screenRect];
+    CGFloat pixelHeight = pixelRect.size.height;
+    CGFloat ratio = pixelHeight/screenHeight;
+	AKUEnqueuePointerEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::POINTER, loc.x*ratio, pixelHeight-loc.y*ratio );
 }
 
 - (void)mouseDown:(NSEvent *)theEvent
@@ -67,8 +72,13 @@ namespace MoaiInputDeviceSensorID {
 
 - (void)mouseDragged:(NSEvent *)theEvent
 {
+    NSRect screenRect = [self bounds];
+    CGFloat screenHeight = screenRect.size.height;
     NSPoint loc = [theEvent locationInWindow];
-	AKUEnqueuePointerEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::POINTER, loc.x, loc.y );
+    NSRect pixelRect = [self convertRectToBacking:screenRect];
+    CGFloat pixelHeight = pixelRect.size.height;
+    CGFloat ratio = pixelHeight/screenHeight;
+	AKUEnqueuePointerEvent( MoaiInputDeviceID::DEVICE, MoaiInputDeviceSensorID::POINTER, loc.x*ratio, pixelHeight-loc.y*ratio );
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent
@@ -197,10 +207,9 @@ namespace MoaiInputDeviceSensorID {
     NSRect frame = [[self window] frame];
     frame.size.width = screen.size.width*AREA_USAGE;
     frame.size.height = screen.size.height*AREA_USAGE;
-
     frame.origin.x = (screen.size.width - frame.size.width)/2;
     frame.origin.y = (screen.size.height - frame.size.height)/2;
-    [[self window] setFrame:frame display:YES animate:YES];
+    //[[self window] setFrame:frame display:YES animate:YES];
 }
 
 // window resizes, moves and display changes (resize, depth and display config change)
