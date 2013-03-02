@@ -1,6 +1,9 @@
 #import <Foundation/Foundation.h>
+#import <ApplicationServices/ApplicationServices.h>
+
+#import <CoreFoundation/CFDictionary.h>
 #import <CoreText/CoreText.h>
-#include <CoreFoundation/CFDictionary.h>
+
 
 #include <moaicore/MOAICoreText.h>
 
@@ -52,7 +55,7 @@ void writeCoreTextOLD(MOAIImage &image)
 }
 
 
-void writeCoreText(MOAIImage &image)
+void writeCoreTextOld2(MOAIImage &image)
 
 {
 	CFStringRef string = (CFStringRef) @"Long";
@@ -99,4 +102,58 @@ void writeCoreText(MOAIImage &image)
 	CTLineDraw(line, context);
 	CFRelease(line);
 	CFRelease(context);
+}
+
+
+void writeCoreText(MOAIImage &image)
+{
+	int w = image.GetWidth(), h = image.GetHeight();
+	
+	memset(image.GetBitmap(), 255, image.GetWidth()*image.GetHeight()*3);
+	
+	CTFontRef font = CTFontCreateWithName(CFSTR("Helvetica"), 10, NULL);
+	
+	// Create an attributed string
+	CFStringRef keys[] = { kCTFontAttributeName };
+	CFTypeRef values[] = { font };
+	CFDictionaryRef attr = CFDictionaryCreate(NULL, (const void **)&keys, (const void **)&values,
+											  sizeof(keys) / sizeof(keys[0]), &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+	CFAttributedStringRef attrString = CFAttributedStringCreate(NULL, CFSTR("H"), attr);
+	CFRelease(attr);
+
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+	
+    int bitmapBytesPerRow   = (w * 4);
+    int bitmapByteCount     = (bitmapBytesPerRow * h);
+	
+    void *bitmapData = calloc( bitmapByteCount, 1 );
+    if (bitmapData == NULL)
+    {
+        fprintf (stderr, "Memory not allocated!");
+        return;
+    }
+    CGContextRef context = CGBitmapContextCreate (bitmapData,
+												  w,
+												  h,
+												  8,
+												  bitmapBytesPerRow,
+												  colorSpace,
+												  kCGImageAlphaNoneSkipLast);
+	
+	// Draw the string
+	CTLineRef line = CTLineCreateWithAttributedString(attrString);
+	CGContextSetTextMatrix(context, CGAffineTransformIdentity);  //Use this one when using standard view coordinates
+	//CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0)); //Use this one if the view's coordinates are flipped
+	
+	
+
+	CGContextSetTextPosition(context, 100, 100);
+	CTLineDraw(line, context);
+	
+	// Clean up
+	CFRelease(line);
+	CFRelease(attrString);
+	CFRelease(font);
+	CFRelease(context);
+
 }
