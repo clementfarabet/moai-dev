@@ -12,4 +12,6 @@
     GLuint framebuffer;
 }
 
+@property (assign) IBOutlet NSWindow *window;
+
 @end

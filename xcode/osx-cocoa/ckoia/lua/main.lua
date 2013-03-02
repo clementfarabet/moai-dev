@@ -1,8 +1,4 @@
 
--- How do we change the cwd there?
-path = 'MoaiCocoa.app/Contents/Resources'
-MOAIFileSystem.setWorkingDirectory(path)
-
 -- Detect res:
 local width  = MOAIEnvironment.horizontalResolution 
 local height = MOAIEnvironment.verticalResolution 
@@ -41,14 +37,6 @@ c:run(function()
    end
 end)
 
--- Test window resize:
-MOAIGfxDevice.setListener(MOAIGfxDevice.EVENT_RESIZE, function(nwidth, nheight)
-   width,height = nwidth,nheight
-   viewport:setSize(width,height)
-   viewport:setScale(width,-height)
-   quad:setRect(-width/2,-height/2,width/2,height/2)
-end)
-
 -- Test text:
 font = MOAIFont.new()
 font:load('Gotham-Book.ttf')
@@ -63,4 +51,13 @@ text:setAlignment(MOAITextBox.CENTER_JUSTIFY)
 text:setString('Welcome to MOAI on OSX!')
 layer:insertProp(text)
 text:spool()
+
+-- Test window resize:
+MOAIGfxDevice.setListener(MOAIGfxDevice.EVENT_RESIZE, function(nwidth, nheight)
+   width,height = nwidth,nheight
+   viewport:setSize(width,height)
+   viewport:setScale(width,-height)
+   quad:setRect(-width/2,-height/2,width/2,height/2)
+   text:setRect(-width/2,-200,width/2,200)
+end)
 

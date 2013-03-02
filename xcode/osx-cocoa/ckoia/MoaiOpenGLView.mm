@@ -107,6 +107,9 @@ static void drawAnObject ()
     // Initialize MOAI env
 	AKURunBytecode ( moai_lua, moai_lua_SIZE );
 
+    // Set Working Dir (TODO: Do this in a better way?)
+    AKURunString("MOAIFileSystem.setWorkingDirectory('MoaiCocoa.app/Contents/Resources')");
+
     // Run user script:
     NSString *cwd = [[NSBundle mainBundle] bundlePath];
     NSString *main = [cwd stringByAppendingPathComponent:@"/Contents/Resources/main.lua"];
@@ -116,6 +119,17 @@ static void drawAnObject ()
     NSTimer *timer = [NSTimer timerWithTimeInterval:AKUGetSimStep() target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
 	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSEventTrackingRunLoopMode]; // ensure timer fires during resize
+
+    // Resize Window
+    float AREA_USAGE = 0.9;
+    NSRect screen = [[[self window] screen] frame];
+    NSRect frame = [[self window] frame];
+    frame.size.width = screen.size.width*AREA_USAGE;
+    frame.size.height = screen.size.height*AREA_USAGE;
+
+    frame.origin.x = (screen.size.width - frame.size.width)/2;
+    frame.origin.y = (screen.size.height - frame.size.height)/2;
+    [[self window] setFrame:frame display:YES animate:YES];
 }
 
 // window resizes, moves and display changes (resize, depth and display config change)
