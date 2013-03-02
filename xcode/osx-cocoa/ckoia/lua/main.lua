@@ -1,4 +1,7 @@
 
+-- How do we change the cwd there?
+path = 'MoaiCocoa.app/Contents/Resources'
+
 -- Detect res:
 local width  = MOAIEnvironment.horizontalResolution 
 local height = MOAIEnvironment.verticalResolution 
@@ -22,7 +25,7 @@ MOAISim.pushRenderPass(layer)
 -- Test
 --
 quad = MOAIGfxQuad2D.new()
-quad:setTexture('/Users/clement/Desktop/test.jpg')
+quad:setTexture(path .. '/test.jpg')
 quad:setRect(-width/2,-height/2,width/2,height/2)
 quad:setUVRect ( 0, 0, 1, 1 )
 
@@ -38,5 +41,12 @@ c:run(function()
       MOAICoroutine.blockOnAction( prop:moveScl(.1, .1, 2) )
       MOAICoroutine.blockOnAction( prop:moveScl(-.1, -.1, 2) )
    end
+end)
+
+MOAIGfxDevice.setListener(MOAIGfxDevice.EVENT_RESIZE, function(nwidth, nheight)
+   width,height = nwidth,nheight
+   viewport:setSize(width,height)
+   viewport:setScale(width,-height)
+   quad:setRect(-width/2,-height/2,width/2,height/2)
 end)
 

@@ -95,12 +95,10 @@ static void drawAnObject ()
     AKUUntzInit ();
 
     // Detect window size (this doesnt work...)
-    NSRect screenRect = [self bounds];
+    NSRect screenRect = [self convertRectToBacking:[self bounds]];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
-    screenWidth = 1440;
-    screenHeight = 900;
-    
+
     // Setup MOAI view:
     AKUSetScreenSize ( screenWidth, screenHeight );
     AKUSetViewSize ( screenWidth, screenHeight );
@@ -123,10 +121,17 @@ static void drawAnObject ()
 // window resizes, moves and display changes (resize, depth and display config change)
 - (void) update
 {
-    NSLog(@"Updating window size\n");
+    // Super class
 	[super update];
-//  AKUSetScreenSize ( w, h );
-//	AKUSetViewSize ( w, h );
+    
+    // Detect window size
+    NSRect screenRect = [self convertRectToBacking:[self bounds]];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    // Update
+    AKUSetScreenSize ( screenWidth, screenHeight );
+    AKUSetViewSize ( screenWidth, screenHeight );
 }
 
 @end
