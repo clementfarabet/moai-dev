@@ -209,7 +209,7 @@ namespace MoaiInputDeviceSensorID {
     frame.size.height = screen.size.height*AREA_USAGE;
     frame.origin.x = (screen.size.width - frame.size.width)/2;
     frame.origin.y = (screen.size.height - frame.size.height)/2;
-    //[[self window] setFrame:frame display:YES animate:YES];
+    [[self window] setFrame:frame display:YES animate:YES];
 }
 
 // window resizes, moves and display changes (resize, depth and display config change)
