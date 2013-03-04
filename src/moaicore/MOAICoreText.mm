@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
-#import <ApplicationServices/ApplicationServices.h>
-
+//#import <ApplicationServices/ApplicationServices.h>
+#import <CoreGraphics/CoreGraphics.h>
 #import <CoreFoundation/CFDictionary.h>
 #import <CoreText/CoreText.h>
 
@@ -529,7 +529,8 @@ void MOAICoreText::RenderCoreText(MOAIImage &image)
 	CFStringRef fontName = CFStringCreateWithCStringNoCopy ( NULL,cfont->GetFontName(), kCFStringEncodingMacRoman, kCFAllocatorNull);
 	CTFontRef font = CTFontCreateWithName(fontName, this->GetSize(), NULL);
 	
-	CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	//CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
 	
 	CFMutableAttributedStringRef attrString = CFAttributedStringCreateMutable(kCFAllocatorDefault, 0);
 	CFStringRef cstring = CFStringCreateWithCStringNoCopy ( NULL,this->mText, kCFStringEncodingMacRoman, kCFAllocatorNull);
