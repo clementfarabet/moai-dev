@@ -104,6 +104,8 @@ void moaicore::InitGlobals ( MOAIGlobals* globals ) {
 	REGISTER_LUA_CLASS ( MOAICameraFitter2D )
 	REGISTER_LUA_CLASS ( MOAIColor )
 	REGISTER_LUA_CLASS ( MOAICompassSensor )
+	REGISTER_LUA_CLASS ( MOAICoreFont )
+	REGISTER_LUA_CLASS ( MOAICoreText )
 	REGISTER_LUA_CLASS ( MOAICoroutine )
 	REGISTER_LUA_CLASS ( MOAIDataBuffer )
 	REGISTER_LUA_CLASS ( MOAIDataBufferStream )
