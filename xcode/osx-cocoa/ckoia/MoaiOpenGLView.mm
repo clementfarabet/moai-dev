@@ -134,6 +134,17 @@ namespace MoaiInputDeviceSensorID {
     [self drawRect:[self bounds]];
 }
 
+-( int ) guessScreenDpi {
+    float dpi = 110;
+    NSRect screenRect = [self bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    NSRect pixelRect = [self convertRectToBacking:screenRect];
+    CGFloat pixelHeight = pixelRect.size.height;
+    CGFloat ratio = pixelHeight/screenHeight;
+    dpi *= ratio;
+    return dpi;
+}
+
 // set initial OpenGL state (current context is set)
 // called after context is created
 - (void) prepareOpenGL
@@ -170,6 +181,7 @@ namespace MoaiInputDeviceSensorID {
 
     // Setup MOAI view:
     AKUSetScreenSize ( screenWidth, screenHeight );
+    AKUSetScreenDpi([ self guessScreenDpi ]);
     AKUSetViewSize ( screenWidth, screenHeight );
     AKUDetectGfxContext ();
 
