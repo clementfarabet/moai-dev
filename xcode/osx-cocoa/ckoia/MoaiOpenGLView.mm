@@ -234,6 +234,7 @@ namespace MoaiInputDeviceSensorID {
     
     // Update
     AKUSetScreenSize ( screenWidth, screenHeight );
+    AKUSetScreenDpi([ self guessScreenDpi ]);
     AKUSetViewSize ( screenWidth, screenHeight );
 }
 
