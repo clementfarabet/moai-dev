@@ -157,10 +157,16 @@ namespace MoaiInputDeviceSensorID {
     AKUExtLoadLuasql ();
     AKUUntzInit ();
 
-    // Detect window size (this doesnt work...)
+    // Steal Focus.
+    [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+    [[[self window] windowController] setShouldCascadeWindows:NO];
+    [[self window] setFrameAutosaveName:@"WindowConfig"];
+    
+    // Detect window size
     NSRect screenRect = [self convertRectToBacking:[self bounds]];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
+    printf("screenRect: %f, %f", screenRect.size.width, screenRect.size.height);
 
     // Setup MOAI view:
     AKUSetScreenSize ( screenWidth, screenHeight );
@@ -200,21 +206,7 @@ namespace MoaiInputDeviceSensorID {
     // Active mouse moved events:
     [[self window] setAcceptsMouseMovedEvents:YES];
     [[self window] makeFirstResponder:self];
-
-    // Resize Window
-    float AREA_USAGE = 0.9;
-    NSRect screen = [[[self window] screen] frame];
-    NSRect frame = [[self window] frame];
-    frame.size.width = screen.size.width*AREA_USAGE;
-    frame.size.height = screen.size.height*AREA_USAGE;
-    frame.origin.x = (screen.size.width - frame.size.width)/2;
-    frame.origin.y = (screen.size.height - frame.size.height)/2;
-    //[[self window] setFrame:frame display:YES animate:YES];
-
-    // Still Focus.
-    [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
-    [[[self window] windowController] setShouldCascadeWindows:NO];
-    [[self window] setFrameAutosaveName:@"WindowConfig"];
+    
 }
 
 // window resizes, moves and display changes (resize, depth and display config change)
