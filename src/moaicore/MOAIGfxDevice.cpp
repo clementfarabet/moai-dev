@@ -1230,7 +1230,7 @@ bool MOAIGfxDevice::SetTexture ( u32 textureUnit, MOAITextureBase* texture ) {
 		return false;
 	}
 	
-	if ( texture->mState == MOAIGfxResource::STATE_PRELOAD ) {
+	if (( texture->mState == MOAIGfxResource::STATE_PRELOAD ) || (texture->IsLoading())) {
 		return this->SetTexture ( textureUnit, this->mDefaultTexture );
 	}
 	

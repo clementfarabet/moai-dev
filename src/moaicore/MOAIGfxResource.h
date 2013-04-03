@@ -78,6 +78,7 @@ public:
 	void			Destroy						();
 	void			Invalidate					();
 	virtual bool	IsValid						() = 0; // return 'true' if the handle to the GPU-side resource is valid (or initialized) - GRAPHICS THREAD
+	virtual bool    IsLoading                   () = 0; // for async texture loading, returns true while loading not complete
 	void			Load						();
 					MOAIGfxResource				();
 	virtual			~MOAIGfxResource			();

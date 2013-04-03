@@ -14,6 +14,11 @@
 
 #include <moaicore/MOAICoreText.h>
 
+#import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import <GLKit/GLKTextureLoader.h>
+
+
 //================================================================//
 // local
 //================================================================//
@@ -180,60 +185,84 @@ void MOAITextureBase::CreateTextureFromImage ( MOAIImage& image ) {
 		default: return;
 	}
 
-	glTexImage2D (
-		GL_TEXTURE_2D,
-		0,  
-		this->mGLInternalFormat,
-		this->mWidth,  
-		this->mHeight,  
-		0,
-		this->mGLInternalFormat,
-		this->mGLPixelType,  
-		image.GetBitmap ()
-	);
+	NSLog(@"A!");
+	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+	GLKTextureLoader *textureLoader = [[GLKTextureLoader alloc] initWithSharegroup:[EAGLContext currentContext].sharegroup];
 	
-	this->mTextureSize = image.GetBitmapSize ();
+	this->mGLTexID = 0;
+	this->mIsLoading = true;
 	
-	if ( MOAIGfxDevice::Get ().LogErrors ()) {
-		error = true;
-	}
-	else if ( genMipMaps ) {
-	
-		u32 mipLevel = 1;
-		
-		MOAIImage mipmap;
-		mipmap.Copy ( image );
-		
-		while ( mipmap.MipReduce ()) {
+	[textureLoader textureWithContentsOfURL:[NSURL URLWithString:@"http://image01.ctvdigital.com/images/pub2upload/2/2008_1_15/mercury-far-side-first-imag.jpg"] options:nil queue:queue completionHandler: ^(GLKTextureInfo *name, NSError *err) {
+		if (err!=nil)
+		{
+			NSLog(@"Error loading texture!");
+		} else {
+			this->mGLTexID = name.name;
+			this->mIsLoading = false;
+			NSLog(@"loaded %@", [NSNumber numberWithInt:this->mGLTexID]);
 			
-			glTexImage2D (
-				GL_TEXTURE_2D,
-				mipLevel++,  
-				this->mGLInternalFormat,
-				mipmap.GetWidth (),  
-				mipmap.GetHeight (),  
-				0,
-				this->mGLInternalFormat,
-				this->mGLPixelType,  
-				mipmap.GetBitmap ()
-			);
-			
-			if ( MOAIGfxDevice::Get ().LogErrors ()) {
-				error = true;
-				break;
-			}
-			this->mTextureSize += mipmap.GetBitmapSize ();
+			MOAIGfxDevice::Get ().ReportTextureAlloc ( this->mDebugName, this->mTextureSize );
+			this->mIsDirty = true;
 		}
-	}
+	}];
+	NSLog(@"B!");
 	
-	if ( error ) {
-		this->mTextureSize = 0;
-		glDeleteTextures ( 1, &this->mGLTexID );
-		this->mGLTexID = 0;
-		this->Clear ();
-		return;
-	}
+
+//	glTexImage2D (
+//		GL_TEXTURE_2D,
+//		0,  
+//		this->mGLInternalFormat,
+//		this->mWidth,  
+//		this->mHeight,  
+//		0,
+//		this->mGLInternalFormat,
+//		this->mGLPixelType,  
+//		image.GetBitmap ()
+//	);
+
 	
+//	this->mTextureSize = image.GetBitmapSize ();
+//	
+//	if ( MOAIGfxDevice::Get ().LogErrors ()) {
+//		error = true;
+//	}
+//	else if ( genMipMaps ) {
+//	
+//		u32 mipLevel = 1;
+//		
+//		MOAIImage mipmap;
+//		mipmap.Copy ( image );
+//		
+//		while ( mipmap.MipReduce ()) {
+//			
+//			glTexImage2D (
+//				GL_TEXTURE_2D,
+//				mipLevel++,  
+//				this->mGLInternalFormat,
+//				mipmap.GetWidth (),  
+//				mipmap.GetHeight (),  
+//				0,
+//				this->mGLInternalFormat,
+//				this->mGLPixelType,  
+//				mipmap.GetBitmap ()
+//			);
+//			
+//			if ( MOAIGfxDevice::Get ().LogErrors ()) {
+//				error = true;
+//				break;
+//			}
+//			this->mTextureSize += mipmap.GetBitmapSize ();
+//		}
+//	}
+//	
+//	if ( error ) {
+//		this->mTextureSize = 0;
+//		glDeleteTextures ( 1, &this->mGLTexID );
+//		this->mGLTexID = 0;
+//		this->Clear ();
+//		return;
+//	}
+//	
 	if ( this->mGLTexID ) {
 		MOAIGfxDevice::Get ().ReportTextureAlloc ( this->mDebugName, this->mTextureSize );
 		this->mIsDirty = true;
@@ -406,8 +435,14 @@ bool MOAITextureBase::IsRenewable () {
 //----------------------------------------------------------------//
 bool MOAITextureBase::IsValid () {
 
-	return ( this->mGLTexID != 0 );
+	return ( this->mGLTexID != 0 ) or (this->mIsLoading);
 }
+
+//----------------------------------------------------------------//
+bool MOAITextureBase::IsLoading () {
+	return this->mIsLoading;
+}
+
 
 //----------------------------------------------------------------//
 bool MOAITextureBase::LoadGfxState () {
@@ -424,6 +459,7 @@ MOAITextureBase::MOAITextureBase () :
 	mMagFilter ( GL_NEAREST ),
 	mWrap ( GL_CLAMP_TO_EDGE ),
 	mTextureSize ( 0 ),
+	mIsLoading( false ), 
 	mIsDirty ( false ) {
 	
 	RTTI_BEGIN

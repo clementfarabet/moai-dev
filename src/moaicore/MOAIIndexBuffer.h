@@ -32,6 +32,7 @@ private:
 	//----------------------------------------------------------------//
 	bool		IsRenewable				();
 	bool		IsValid					();
+	bool		IsLoading				() { return false; };
 	void		OnBind					();
 	void		OnClear					();
 	void		OnCreate				();

@@ -61,6 +61,8 @@ protected:
 	
 	bool				mIsDirty;
 
+	bool				mIsLoading;
+
 	//----------------------------------------------------------------//
 	static int		_getSize				( lua_State* L );
 	static int		_release				( lua_State* L );
@@ -89,6 +91,7 @@ public:
 	u32				GetHeight				();
 	u32				GetWidth				();
 	bool			IsValid					();
+	bool            IsLoading               ();
 	bool			LoadGfxState			();
 					MOAITextureBase			();
 					~MOAITextureBase		();

@@ -45,6 +45,8 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		49D9B1D5170B7D74009274EE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D9B1D4170B7D74009274EE /* CoreText.framework */; };
+		49D9B1E1170B8205009274EE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D9B1E0170B8205009274EE /* GLKit.framework */; };
 		6630C511151005BB00F2F031 /* libmoai-ios-facebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6676D5D115100458004EA27A /* libmoai-ios-facebook.a */; };
 		665383F1160A76E2003D5529 /* libCrittercismCrashOnly_v3_3_3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 665383F0160A76E2003D5529 /* libCrittercismCrashOnly_v3_3_3.a */; };
 		665383F3160A798F003D5529 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 665383F2160A798F003D5529 /* FacebookSDKResources.bundle */; };
@@ -508,6 +510,8 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* MoaiSample_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoaiSample_Prefix.pch; sourceTree = "<group>"; };
+		49D9B1D4170B7D74009274EE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		49D9B1E0170B8205009274EE /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		665383F0160A76E2003D5529 /* libCrittercismCrashOnly_v3_3_3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrittercismCrashOnly_v3_3_3.a; path = "../../3rdparty/crittercismiOS-3.3.3/CrittercismSDK-crashonly/libCrittercismCrashOnly_v3_3_3.a"; sourceTree = "<group>"; };
 		665383F2160A798F003D5529 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = "../../3rdparty/facebookiOS-3.0.6.b/FacebookSDKResources.bundle"; sourceTree = "<group>"; };
 		665383F4160A7B65003D5529 /* libfacebook_ios_sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfacebook_ios_sdk.a; path = "../../3rdparty/facebookiOS-3.0.6.b/libfacebook_ios_sdk.a"; sourceTree = "<group>"; };
@@ -542,6 +546,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49D9B1E1170B8205009274EE /* GLKit.framework in Frameworks */,
+				49D9B1D5170B7D74009274EE /* CoreText.framework in Frameworks */,
 				665383F5160A7B65003D5529 /* libfacebook_ios_sdk.a in Frameworks */,
 				665383F1160A76E2003D5529 /* libCrittercismCrashOnly_v3_3_3.a in Frameworks */,
 				07E9F73E13B50582006396F3 /* libmoai-ios.a in Frameworks */,
@@ -703,6 +709,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				49D9B1E0170B8205009274EE /* GLKit.framework */,
+				49D9B1D4170B7D74009274EE /* CoreText.framework */,
 				665383F6160A8466003D5529 /* MessageUI.framework */,
 				665383F4160A7B65003D5529 /* libfacebook_ios_sdk.a */,
 				665383F0160A76E2003D5529 /* libCrittercismCrashOnly_v3_3_3.a */,

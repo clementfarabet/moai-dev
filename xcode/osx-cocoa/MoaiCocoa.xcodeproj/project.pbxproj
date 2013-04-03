@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49D9B1E4170B84F2009274EE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D9B1E3170B84F2009274EE /* GLKit.framework */; };
 		EBEA1A4716E169230012E642 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEA1A4616E169230012E642 /* Cocoa.framework */; };
 		EBEA1A5116E169230012E642 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EBEA1A4F16E169230012E642 /* InfoPlist.strings */; };
 		EBEA1A5316E169230012E642 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBEA1A5216E169230012E642 /* main.m */; };
@@ -208,6 +209,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49D9B1E3170B84F2009274EE /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		EBEA1A4316E169230012E642 /* MoaiCocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoaiCocoa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBEA1A4616E169230012E642 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EBEA1A4916E169230012E642 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -234,7 +236,7 @@
 		EBEA1B1216E17D980012E642 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		EBEA1B1516E17DEC0012E642 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		EBEA1B1716E17E020012E642 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		EBEA1B1E16E24E3A0012E642 /* main.lua */ = {isa = PBXFileReference; lastKnownFileType = file; name = main.lua; path = ckoia/lua/main.lua; sourceTree = "<group>"; };
+		EBEA1B1E16E24E3A0012E642 /* main.lua */ = {isa = PBXFileReference; lastKnownFileType = text; name = main.lua; path = ckoia/lua/main.lua; sourceTree = "<group>"; };
 		EBEA1B2216E26A820012E642 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test.jpg; path = ckoia/lua/test.jpg; sourceTree = "<group>"; };
 		EBEA1B2416E26FD70012E642 /* Gotham-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham-Book.ttf"; path = "ckoia/lua/Gotham-Book.ttf"; sourceTree = "<group>"; };
 		EBEA1B5B16E2B2BD0012E642 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ckoia/icon.icns; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49D9B1E4170B84F2009274EE /* GLKit.framework in Frameworks */,
 				EBEA1B1816E17E020012E642 /* IOKit.framework in Frameworks */,
 				EBEA1B1616E17DEC0012E642 /* CoreFoundation.framework in Frameworks */,
 				EBEA1B1416E17DA10012E642 /* Foundation.framework in Frameworks */,
@@ -291,6 +294,7 @@
 		EBEA1A4516E169230012E642 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49D9B1E3170B84F2009274EE /* GLKit.framework */,
 				EBEA1B1216E17D980012E642 /* AudioUnit.framework */,
 				EBEA1B1016E17D910012E642 /* AudioToolbox.framework */,
 				EBEA1A6316E1694A0012E642 /* OpenGL.framework */,
