@@ -147,6 +147,7 @@
 #include <moaicore/MOAITextDesigner.h>
 #include <moaicore/MOAITextStyle.h>
 #include <moaicore/MOAITexture.h>
+#include <moaicore/MOAIAsyncTexture.h>
 #include <moaicore/MOAITextureBase.h>
 #include <moaicore/MOAIThread.h>
 #include <moaicore/MOAIThread_posix.h>
